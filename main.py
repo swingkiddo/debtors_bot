@@ -1,14 +1,16 @@
 import logging
+import json
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, StringRegexHandler, ConversationHandler
-
-
 from handlers import start, debt_create_conv
+
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 
-TOKEN = "6877971933:AAFsZ6PGioV90UDojsgQaUCWLnsT4w9hlqA"
+with open("config.json") as cfg:
+    config = json.load(cfg)
+TOKEN = config["token"]
 
 
 if __name__ == '__main__':
