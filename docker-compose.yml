@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: debtors
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "127.0.0.1:5987:5432"
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+      - /debtorsdb-data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      debtors-net:
+        aliases:
+          - postgrtes15
+
+networks:
+  debtors-net:
+    driver: bridge
